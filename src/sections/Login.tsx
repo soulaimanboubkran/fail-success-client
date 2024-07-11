@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { login } from "../redux/apiCalls";
 import { useDispatch } from "react-redux";
+import OAuth from "../components/0Auth";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -69,6 +70,7 @@ const Login = () => {
             <h1 className="text-gray-500">Or</h1>
             <hr className="my-6 border-gray-300 w-full" />
           </div>
+          <OAuth/>
           <p className="mt-8">
             Need an account?
             <Link to="/register" className="text-blue-600 hover:text-blue-700 font-medium">
