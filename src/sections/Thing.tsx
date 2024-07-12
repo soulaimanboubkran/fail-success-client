@@ -147,7 +147,9 @@ console.log(isOpen)
          
         </button>
       </div>
-     <Strings showModal2={showModal2} setShowModal2={setShowModal2}/>
+
+
+     <Strings showModal2={showModal2} setShowModal2={setShowModal2} setShowModal={setShowModal}  setThing={setThing}/>
       {showModal && (
         <div className="fixed   inset-0 z-10 ">
           <div className="flex  items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
@@ -202,7 +204,7 @@ console.log(isOpen)
                             value={thing}
                             onChange={(e) => setThing(e.target.value)}
                             placeholder="Type here"
-                            className="input  input-ghost focus:bg-white focus:outline-none sm:w-96 w-full"
+                            className="input   input-ghost focus:bg-white focus:outline-none sm:w-96 w-full"
                           />
                         </label>{" "}
                         <label className="form-control">

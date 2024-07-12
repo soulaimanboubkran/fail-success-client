@@ -6,10 +6,12 @@ import { useSelector } from 'react-redux';
 
 interface StringsProps {
   showModal2: boolean;
+  setThing: React.Dispatch<React.SetStateAction<string>>;
+  setShowModal:(show: boolean) => void;
   setShowModal2: (show: boolean) => void;
 }
 
-const Strings: React.FC<StringsProps> = ({ showModal2, setShowModal2 }) => {
+const Strings: React.FC<StringsProps> = ({ showModal2, setShowModal2,setThing,setShowModal }) => {
   const [strings, setStrings] = useState<string[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>('');
@@ -21,6 +23,7 @@ const Strings: React.FC<StringsProps> = ({ showModal2, setShowModal2 }) => {
     try {
       const response = await userRequest.get(`/user/strings/${id}`);
       setStrings(response.data); // Assuming the response.data is an array of strings
+    
       setLoading(false);
     } catch (error) {
       setError('Error fetching strings');
@@ -38,8 +41,12 @@ const Strings: React.FC<StringsProps> = ({ showModal2, setShowModal2 }) => {
     setShowModal2(false);
   };
 
-  const handleAdd = () => {
+  const handleAdd = (s :string) => {
     // Add your logic for handling string additions here
+    setThing(s)
+    setShowModal2(false);
+    setShowModal(true);
+
   };
 
   return (
@@ -99,7 +106,7 @@ const Strings: React.FC<StringsProps> = ({ showModal2, setShowModal2 }) => {
                           <li
                             key={index}
                             className="p-4 rounded-xl cursor-pointer hover:bg-gray-50"
-                            onClick={handleAdd}
+                            onClick={()=> handleAdd(string)}
                           >
                             {string}
                           </li>
