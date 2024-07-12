@@ -9,6 +9,7 @@ interface StringsProps {
   setThing: React.Dispatch<React.SetStateAction<string>>;
   setShowModal:(show: boolean) => void;
   setShowModal2: (show: boolean) => void;
+ 
 }
 
 const Strings: React.FC<StringsProps> = ({ showModal2, setShowModal2,setThing,setShowModal }) => {
@@ -38,7 +39,9 @@ const Strings: React.FC<StringsProps> = ({ showModal2, setShowModal2,setThing,se
   }, [showModal2]);
 
   const closeModal = () => {
+   
     setShowModal2(false);
+    
   };
 
   const handleAdd = (s :string) => {

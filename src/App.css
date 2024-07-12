@@ -1,0 +1,50 @@
+/* Add this CSS to your global CSS file or CSS module */
+
+@keyframes shine-1 {
+    0% {
+      opacity: 0.8;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0.8;
+    }
+  }
+  
+  @keyframes shine-2 {
+    0% {
+      opacity: 0.8;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0.8;
+    }
+  }
+  
+  @keyframes shine-3 {
+    0% {
+      opacity: 0.8;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0.8;
+    }
+  }
+  
+  .animate-shine-1 {
+    animation: shine-1 2s ease-in-out infinite;
+  }
+  
+  .animate-shine-2 {
+    animation: shine-2 2s ease-in-out infinite;
+  }
+  
+  .animate-shine-3 {
+    animation: shine-3 2s ease-in-out infinite;
+  }
+  

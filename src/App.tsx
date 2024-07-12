@@ -9,13 +9,14 @@ import { RootState } from './redux/store';
 import Home from './sections/Home';
 import Header from './components/Header';
 
+
 const App: React.FC = () => {
 
   const profile = useSelector((state: RootState) => state.user.currentUser);
 
   return (
   <>
-<Header/>
+<Header />
       <Routes>
       <Route path="/" element={<Home />} />
         <Route path="/thing" element={<Thing />} />

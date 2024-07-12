@@ -12,7 +12,7 @@ import { LuTextSelect } from "react-icons/lu";
 import Strings from "./Strings";
 import { useEffect, useState } from "react";
 import { userRequest } from "../requestMethods";
-
+import { MdLogout } from "react-icons/md";
 
 const Header = () => {
 
@@ -70,6 +70,7 @@ const Header = () => {
 
   const closeModal = () => {
     setShowModal(false);
+
   };
   return (
     
@@ -129,9 +130,9 @@ const Header = () => {
           {profile ? (
             <button
               onClick={logout}
-              className="h-full sticky w-full inline-flex items-center justify-center rounded-lg border border-slate-800 px-6 font-medium text-stone-50 transition-colors focus:outline-none focus:ring-2 bg-slate-900 focus:ring-offset-2 focus:ring-offset-slate-50"
+              className="h-full sticky  w-full inline-flex items-center justify-center rounded-lg border border-slate-800 px-6 py-1 font-medium text-stone-50 transition-colors focus:outline-none focus:ring-2 bg-slate-900 focus:ring-offset-2 focus:ring-offset-slate-50"
             >
-              Logout
+              Logout<MdLogout  className="ml-1"/>
             </button>
           ) : (
             <Link
@@ -241,6 +242,7 @@ const Header = () => {
         setShowModal2={setShowModal2}
         setShowModal={setShowModal}
         setThing={setThing}
+ 
       />
 </div>
     </>
