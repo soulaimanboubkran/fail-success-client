@@ -6,6 +6,15 @@ export default {
   ],
   theme: {
     extend: {},
+    fontFamily: {
+      'sans': ['ui-sans-serif', 'system-ui', 'sans-serif'],
+      'serif': ['ui-serif', 'Georgia', 'serif'],
+      'mono': ['ui-monospace', 'SFMono-Regular', 'monospace'],
+      'display': ['Oswald', 'sans-serif'],
+      'Syne': ['Syne', 'sans-serif'],
+      'Popins': ["Poppins", 'sans-serif'],
+      'Inter': ["Inter", 'sans-serif'],
+    },
   
      animation: {
         shimmer: "shimmer 2s linear infinite"

@@ -80,7 +80,7 @@ const Header = () => {
         <div className="fixed bottom-[10.5rem] left-2 z-50">
           <button
             onClick={openModal}
-            className="h-full w-full  animate-shimmer inline-flex items-center justify-center rounded-lg border border-slate-800 text-2xl px-2 py-1 font-medium text-stone-50 transition-colors focus:outline-none focus:ring-2 bg-slate-900 focus:ring-offset-2 focus:ring-offset-slate-50"
+            className="px-2 py-1  w-full h-full flex rounded-md border border-black bg-white text-black text-sm hover:shadow-[4px_4px_0px_0px_rgba(0,0,0)] transition duration-200"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -102,43 +102,43 @@ const Header = () => {
           <Link
             to="/thing"
             type="button"
-            className="h-full sticky w-full   animate-shimmer inline-flex items-center justify-center rounded-lg border border-slate-800 text-2xl px-2 py-1 font-medium text-stone-50 transition-colors focus:outline-none focus:ring-2 bg-slate-900 focus:ring-offset-2 focus:ring-offset-slate-50"
+            className="px-2 py-1  w-full h-full flex rounded-md border border-black bg-white text-black text-sm hover:shadow-[4px_4px_0px_0px_rgba(0,0,0)] transition duration-200"
             aria-expanded="false"
           >
-            <FiSquare />
+            <FiSquare className="text-2xl"/>
           </Link>
         </div>
         <div className="fixed  bottom-12 left-2 z-50">
           <Link
             to="/"
             type="button"
-            className="h-full sticky w-full   animate-shimmer inline-flex items-center justify-center rounded-lg border border-slate-800 text-2xl px-2 py-1 font-medium text-stone-50 transition-colors focus:outline-none focus:ring-2 bg-slate-900 focus:ring-offset-2 focus:ring-offset-slate-50"
+            className="px-2 py-1  w-full h-full flex rounded-md border border-black bg-white text-black text-sm hover:shadow-[4px_4px_0px_0px_rgba(0,0,0)] transition duration-200"
             aria-expanded="false"
           >
-            <RiHome6Line />
+            <RiHome6Line className="text-2xl"/>
           </Link>
         </div>
         <div className="fixed  bottom-[8rem] left-2 z-50">
           <button
            onClick={openModal2}
-            className="h-full w-full text-2xl animate-shimmer inline-flex items-center justify-center rounded-lg border border-slate-800 px-2 py-1 font-medium text-stone-50 transition-colors focus:outline-none focus:ring-2 bg-slate-900 focus:ring-offset-2 focus:ring-offset-slate-50"
+            className="px-2 py-1 rounded-md border border-black bg-white text-black text-sm hover:shadow-[4px_4px_0px_0px_rgba(0,0,0)] transition duration-200"
           >
-            <LuTextSelect />
+            <LuTextSelect className="text-2xl"/>
           </button>
         </div>
         <div className="fixed bottom-2 right-2 z-50">
           {profile ? (
             <button
               onClick={logout}
-              className="h-full sticky  w-full inline-flex items-center justify-center rounded-lg border border-slate-800 px-6 py-1 font-medium text-stone-50 transition-colors focus:outline-none focus:ring-2 bg-slate-900 focus:ring-offset-2 focus:ring-offset-slate-50"
+              className="px-6 py-1 flex  rounded-md border border-black bg-white text-black text-sm hover:shadow-[4px_4px_0px_0px_rgba(0,0,0)] transition duration-200"
             >
-              Logout<MdLogout  className="ml-1"/>
+              Logout<MdLogout  className="ml-1 text-xl"/>
             </button>
           ) : (
             <Link
               to="/login"
-              className="h-full sticky w-full inline-flex items-center justify-center rounded-lg border border-slate-800 px-[1.1rem] font-medium text-stone-50 transition-colors focus:outline-none focus:ring-2 bg-slate-900 focus:ring-offset-2 focus:ring-offset-slate-50"
-            >
+              className="px-2 py-1  text-xl font-bold w-full h-full flex rounded-md border border-black bg-white text-black  hover:shadow-[4px_4px_0px_0px_rgba(0,0,0)] transition duration-200"
+              >
               Log in
             </Link>
           )}
@@ -172,7 +172,7 @@ const Header = () => {
                   </div>
                   <div className="mt-3 h-72 text-center sm:mt-0 sm:ml-4 sm:text-left">
                     <h3 className="text-lg leading-6 font-medium text-gray-900" id="modal-title">
-                      Your old things
+                      Your New things
                     </h3>
                     <div className="mt-2 h-40 w-full ">
                       <form onSubmit={handleClick}>

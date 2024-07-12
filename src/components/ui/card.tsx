@@ -28,12 +28,12 @@ const FeaturesSectionDemo: React.FC<FeaturesSectionDemoProps> = ({
   };
 
   return (
-    <div className="py-10">
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-14 md:gap-2 max-w-full px-5 mx-auto">
+    <div className="py-16  ">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 md:gap-5 max-w-full px-5 mx-auto">
       {grid.map((feature) => (
         <div
           key={feature._id}
-          className="relative bg-gradient-to-b dark:from-neutral-900 from-neutral-100 dark:to-neutral-950 to-gray-100 p-6 overflow-hidden flex flex-col justify-between"
+          className="relative rounded-md bg-gradient-to-b dark:from-neutral-900 from-neutral-100 dark:to-neutral-950 to-gray-100 p-6 overflow-hidden flex flex-col justify-between"
         >
           <Grid
             size={20}
@@ -56,28 +56,28 @@ const FeaturesSectionDemo: React.FC<FeaturesSectionDemoProps> = ({
               <>
                 <button
                   onClick={() => updateFeatureState(feature._id, "success")}
-                  className="mt-6 shadow-[0_4px_14px_0_rgb(0,0,0,10%)] hover:shadow-[0_6px_20px_rgba(93,93,93,23%)] px-6 py-2 bg-[#fff] text-[#696969] rounded-md font-light transition duration-200 ease-linear"
+                  className="mt-6 z-[1] shadow-[0_4px_14px_0_rgb(0,0,0,10%)] hover:shadow-[0_6px_20px_rgba(93,93,93,23%)] px-6 py-2 bg-[#fff] text-[#696969] rounded-md font-light transition duration-200 ease-linear"
                 >
                   Success
                 </button>
                 <button
                   onClick={() => updateFeatureState(feature._id, "faild")}
-                  className="mt-6 ml-1 shadow-[0_4px_14px_0_rgb(0,0,0,10%)] hover:shadow-[0_6px_20px_rgba(93,93,93,23%)] px-6 py-2 bg-[#fff] text-[#696969] rounded-md font-light transition duration-200 ease-linear"
+                  className="mt-6 z-[1] ml-1 shadow-[0_4px_14px_0_rgb(0,0,0,10%)] hover:shadow-[0_6px_20px_rgba(93,93,93,23%)] px-6 py-2 bg-[#fff] text-[#696969] rounded-md font-light transition duration-200 ease-linear"
                 >
                   Faild
                 </button>
               </>
             ) : feature.state === "success" ? (
               <span        
-                     className="mt-6 text-white bg-lime-600 shadow-[0_4px_14px_0_rgb(0,0,0,10%)] hover:shadow-[0_6px_20px_rgba(93,93,93,23%)] px-6 py-2  rounded-md font-light transition duration-200 ease-linear"
+                     className="mt-6 text-white font-light bg-lime-600 shadow-[0_4px_14px_0_rgb(0,0,0,10%)] hover:shadow-[0_6px_20px_rgba(93,93,93,23%)] px-6 py-2  rounded-md  transition duration-200 ease-linear"
 >Success</span>
             ) : (
-              <span                      className="mt-6 text-white bg-orange-600 shadow-[0_4px_14px_0_rgb(0,0,0,10%)] hover:shadow-[0_6px_20px_rgba(93,93,93,23%)] px-6 py-2  rounded-md font-light transition duration-200 ease-linear"
+              <span                      className="mt-6 text-white font-light bg-orange-600 shadow-[0_4px_14px_0_rgb(0,0,0,10%)] hover:shadow-[0_6px_20px_rgba(93,93,93,23%)] px-6 py-2  rounded-md  transition duration-200 ease-linear"
 >Faild</span>
             )}
             <button
               onClick={() => handleDelete(feature._id)}
-              className="mt-6 shadow-[0_4px_14px_0_rgb(0,0,0,10%)] hover:shadow-[0_6px_20px_rgba(93,93,93,23%)] px-6 py-2 bg-[#fff] text-[#696969] rounded-md font-light transition duration-200 ease-linear"
+              className="mt-6 z-[1] shadow-[0_4px_14px_0_rgb(0,0,0,10%)] hover:shadow-[0_6px_20px_rgba(93,93,93,23%)] px-6 py-2 bg-[#fff] text-[#696969] rounded-md font-light transition duration-200 ease-linear"
             >
               Delete
             </button>
