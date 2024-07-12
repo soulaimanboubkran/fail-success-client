@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { userRequest } from "../requestMethods";
 import { TbLayoutSidebarLeftCollapse, TbLayoutSidebarRightCollapse } from "react-icons/tb";
-
 import { Link, useNavigate } from "react-router-dom";
 import Strings from "../components/Strings";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,236 +10,48 @@ import { LuTextSelect } from "react-icons/lu";
 import { logoutSuccess } from "../redux/userRedux";
 import { FiSquare } from "react-icons/fi";
 import { RiHome6Line } from "react-icons/ri";
+import FeaturesSectionDemo from "../components/ui/card";
 
 
+interface Feature {
+  _id: string;
+  thing: string;
+  description: string;
+}
 const Thing = () => {
-  const [thing, setThing] = useState('');
-  const [showModal, setShowModal] = useState(false);
-  const [showModal2, setShowModal2] = useState(false);
-  const isOpen = useSelector((state: RootState) => state.open.isOpen);
+
   const profile = useSelector((state: RootState) => state.user.currentUser);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string>('');
+  const id = profile?._id;
+  const [things, setThings] = useState<Feature[]>([]);
 
-  const dispatch = useDispatch();
-   const navigate = useNavigate()
-  const handleToggle = () => {
-    dispatch(toggleOpen());
-  };
- 
-console.log(isOpen)
-  const openModal2 = () => {
-    setShowModal2(true);
-  
-  };
-  const handleClick = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const fetchUserThings = async () => {
     try {
-      const requestData = {
-        thing: thing // Assign the value of 'thing' to the 'thing' property
-      };
-
-      // Send the request with the correctly structured data object
-      await userRequest.post('/thing/addThing', requestData);
-
-      // Optionally, clear the input field after successful submission
-      setThing('');
-
+      const response = await userRequest.post(`/thing/things/${id}`);
+      setThings(response.data.things);
+      setLoading(false);
     } catch (error) {
-      console.log(error);
+      setError('Error fetching strings');
+      setLoading(false);
     }
   };
-  const openModal = () => {
-    setShowModal(true);
-   
-  };
 
-  const closeModal = () => {
-    setShowModal(false);
-  };
+  useEffect(() => {
+    fetchUserThings();
+  }, []); // Empty dependency array ensures it runs only once
 
-  const logout = () => {
-    localStorage.removeItem("persist:root");
-    dispatch(logoutSuccess());
 
-    navigate("/login");
-  };
+
+
   return (
     <>
-    {isOpen && (<>
-  
      
-      <div className="fixed bottom-[10.5rem] left-2 z-50">
-        <button
-          onClick={openModal}
-          className="h-full w-full  animate-shimmer inline-flex items-center justify-center rounded-lg border border-slate-800  text-2xl px-2 py-1 font-medium text-stone-50 transition-colors focus:outline-none focus:ring-2 bg-slate-900 focus:ring-offset-2 focus:ring-offset-slate-50"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="w-6 h-6"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M12 4.5v15m7.5-7.5h-15"
-            />
-          </svg>
-        </button>
-      </div>
-      <div className="fixed bottom-[5.5rem] left-2 z-50">
-        <Link
-          to="/thing"
-          type="button"
-          className="h-full sticky w-full   animate-shimmer inline-flex items-center justify-center rounded-lg border border-slate-800 text-2xl px-2 py-1 font-medium text-stone-50 transition-colors focus:outline-none focus:ring-2 bg-slate-900 focus:ring-offset-2 focus:ring-offset-slate-50"
-          aria-expanded="false"
-        >
-          <FiSquare />
-        </Link>
-      </div>
-      <div className="fixed  bottom-12 left-2 z-50">
-        <Link
-          to="/"
-          type="button"
-          className="h-full sticky w-full   animate-shimmer inline-flex items-center justify-center rounded-lg border border-slate-800 text-2xl px-2 py-1 font-medium text-stone-50 transition-colors focus:outline-none focus:ring-2 bg-slate-900 focus:ring-offset-2 focus:ring-offset-slate-50"
-          aria-expanded="false"
-        >
-          <RiHome6Line />
-        </Link>
-      </div>
-      <div className="fixed  bottom-[8rem] left-2 z-50">
-        <button
-          onClick={openModal2}
-          className="h-full w-full text-2xl animate-shimmer inline-flex items-center justify-center rounded-lg border border-slate-800  px-2 py-1 font-medium text-stone-50 transition-colors focus:outline-none focus:ring-2 bg-slate-900 focus:ring-offset-2 focus:ring-offset-slate-50"
-        >
-         <LuTextSelect />
-    
-        </button>
-      </div>
-      <div className="fixed bottom-2 right-2 z-50"> 
-       {profile ? <button onClick={logout} 
-          className="h-full sticky w-full   inline-flex items-center justify-center rounded-lg border border-slate-800  px-6 font-medium text-stone-50 transition-colors focus:outline-none focus:ring-2 bg-slate-900 focus:ring-offset-2 focus:ring-offset-slate-50"
->
-      Logout   </button>:
-        <Link
-          to="/login"
-          className="h-full sticky w-full   inline-flex items-center justify-center rounded-lg border border-slate-800  px-[1.1rem] font-medium text-stone-50 transition-colors focus:outline-none focus:ring-2 bg-slate-900 focus:ring-offset-2 focus:ring-offset-slate-50"
-        >
-           
-          Log in
-        </Link>}
-      </div>
-      </>)}
 
+  
 
-
-
-
-      <div className="fixed bottom-2 left-2 z-50">
-        <button
-         onClick={handleToggle}
-          className="h-full w-full text-2xl animate-shimmer inline-flex items-center justify-center rounded-lg border border-slate-800  px-2 py-1  font-medium text-stone-50 transition-colors focus:outline-none focus:ring-2 bg-slate-900 focus:ring-offset-2 focus:ring-offset-slate-50"
-        >
-          {isOpen ? ( <TbLayoutSidebarLeftCollapse /> ):( <TbLayoutSidebarRightCollapse/>)
-        }
-         
-        </button>
-      </div>
-
-
-     <Strings showModal2={showModal2} setShowModal2={setShowModal2} setShowModal={setShowModal}  setThing={setThing}/>
-      {showModal && (
-        <div className="fixed   inset-0 z-10 ">
-          <div className="flex  items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-            <div
-              className="fixed inset-0 transition-opacity"
-              aria-hidden="true"
-            >
-              <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
-            </div>
-            <span
-              className="hidden sm:inline-block sm:align-middle sm:h-screen"
-              aria-hidden="true"
-            >
-              &#8203;
-            </span>
-            <div className="inline-block align-bottom bg-white rounded-3xl text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg  sm:w-full">
-              <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                <div className="sm:flex sm:items-start">
-                  <div className="mx-auto  flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-12">
-                    <svg
-                      className="h-6 w-6 text-green-600"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      aria-hidden="true"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                  </div>
-                  <div className="mt-3 h-72 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                    <h3
-                      className="text-lg leading-6 font-medium text-gray-900"
-                      id="modal-title"
-                    >
-                      Your old things
-                    </h3>
-                    <div className="mt-2 h-40 w-full ">
-                      <form onSubmit={handleClick}>
-                        <label className="form-control w-full ">
-                          <div className="label">
-                            <span className="label-text">
-                              What is the thing?
-                            </span>
-                          </div>
-                          <input
-                            value={thing}
-                            onChange={(e) => setThing(e.target.value)}
-                            placeholder="Type here"
-                            className="input   input-ghost focus:bg-white focus:outline-none sm:w-96 w-full"
-                          />
-                        </label>{" "}
-                        <label className="form-control">
-                          <div className="label">
-                            <span className="label-text">the why</span>
-                          </div>
-                          <textarea
-                            className="textarea textarea-ghost focus:bg-white focus:outline-none  h-24"
-                            placeholder="Bio"
-                          ></textarea>
-                        </label>
-                        <div className=" px-4 py-3 sm:px-3 sm:flex sm:flex-row">
-                        <button
-                          type="submit"
-                          className="w-full inline-flex justify-center rounded-xl border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500  sm:w-auto sm:text-sm"
-                        >
-                          Click
-                        </button></div>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="bg-gray-50 px-4 py-3 sm:px-3 sm:flex sm:flex-row-reverse">
-                <button
-                  onClick={closeModal}
-                  type="button"
-                  className="w-full inline-flex justify-center rounded-xl border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm"
-                >
-                  Close
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      {/* Integrate FeaturesSectionDemo component */}
+      <FeaturesSectionDemo grid={things}/>
     </>
   );
 };

@@ -55,7 +55,7 @@ const Strings: React.FC<StringsProps> = ({ showModal2, setShowModal2,setThing,se
       
     
   
-
+      <div className="bg-white">
     
       {/* Modal content */}
       {showModal2 && (
@@ -129,6 +129,7 @@ const Strings: React.FC<StringsProps> = ({ showModal2, setShowModal2,setThing,se
           </div>
         </div>
       )}
+      </div>
     </>
   );
 };
