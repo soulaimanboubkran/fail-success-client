@@ -20,6 +20,8 @@ const Login = () => {
             const res = await login(dispatch, { email, password });
             setLoading(false);
             naviagate('/')
+       
+      window.location.reload();
         } catch (error) {
             setLoading(false);
         }

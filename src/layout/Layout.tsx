@@ -6,15 +6,23 @@ interface LayoutProps {
     children:ReactNode;
   }
 const Layout: React.FC<LayoutProps> = ({ header, children}) => {
-    return (
-        <div>
+    return ( <>
+        {header}
+        <div className="min-h-screen bg-white flex flex-col">
+      {/* Header */}
+  
+      
+      {/* Main content area */}
+      <div className=" ">
+        {/* Sidebar */}
 
-             {/* --> header slot */}
-             {header}
-            <div >
-               {children}
-            </div>
-        </div>
+      
+   
+        
+        {/* Main content */}
+        <div className=" p-4 ">{children}</div>
+      </div>
+    </div></>
     );
 };
 

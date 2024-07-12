@@ -31,8 +31,12 @@ interface LoginFailureAction extends Action {
   type: 'LOGIN_FAILURE';
 }
 
+interface LogoutSuccessAction extends Action {
+  type: 'LOGOUT_SUCCESS';
+}
+
 // Combine all possible actions into a union type
-export type UserActionTypes = LoginStartAction | LoginSuccessAction | LoginFailureAction;
+export type UserActionTypes = LoginStartAction | LoginSuccessAction | LoginFailureAction | LogoutSuccessAction;
 
 // Create user slice with reducers
 const userSlice = createSlice({
@@ -54,7 +58,7 @@ const userSlice = createSlice({
     },
     logoutSuccess: (state) => {
       state.isFetching = false;
-      state.currentUser = null;
+      state.currentUser = null; // Set currentUser to null upon logout
       state.error = false;
     },
   },
