@@ -26,7 +26,7 @@ const Header = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const [load, setLoad] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [showModal2, setShowModal2] = useState(false);
   
@@ -35,6 +35,7 @@ const Header = () => {
 
   const handleClick = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoad(true)
     try {
       const requestData = {
         thing: thing,
@@ -43,10 +44,12 @@ const Header = () => {
       };
 
       await userRequest.post('/thing/addThing', requestData);
-
+setLoad(false)
       setThing('');
       setDescription('');
     } catch (error) {
+      setLoad(false)
+
       console.log(error);
     }
   };
@@ -229,7 +232,13 @@ const Header = () => {
                             type="submit"
                             className="w-full inline-flex justify-center rounded-xl border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500  sm:w-auto sm:text-sm"
                           >
-                            Click
+                            {load ? (
+                
+                <span className="loading loading-spinner loading-md "></span>
+             
+            ):(   'Click'
+            )}
+                         
                           </button>
                         </div>
                       </form>

@@ -12,6 +12,7 @@ interface Feature {
   thing: string;
   description: string;
   state: string;
+  loadings:boolean
 }
 
 const Thing = () => {
@@ -24,7 +25,7 @@ const Thing = () => {
   const [page, setPage] = useState<number>(1);
   const [total, setTotal] = useState<number>(0);
   const [loadingMore, setLoadingMore] = useState<boolean>(false);
-
+  const [loadings,setLoadings]=useState<boolean>(false);
   const fetchUserThings = useCallback(async (page: number, append = false) => {
     if (!id) return;
     append ? setLoadingMore(true) : setLoading(true);
@@ -87,10 +88,14 @@ const Thing = () => {
   };
 
   const deleteFeature = async (id: string) => {
+    setLoadings(true)
     try {
       await userRequest.delete(`/thing/deleteThing/${id}`);
       setThings((prevThings) => prevThings.filter((feature) => feature._id !== id));
+      setLoadings(false)
     } catch (error) {
+      setLoadings(false)
+
       console.log(error);
     }
   };
@@ -104,7 +109,8 @@ const Thing = () => {
               <span className="loading loading-spinner loading-lg "></span>
             </div>
           ): error ? (
-            <p>{error}</p>
+            <p>{error === "No things found for this user" ? error : 'Reload the page'}</p>
+
           ) : (
             <>
               <div className="absolute top-3 left-6 z-50">
@@ -133,6 +139,7 @@ const Thing = () => {
                 grid={things}
                 updateFeatureState={updateFeatureState}
                 deleteFeature={deleteFeature}
+                loadings={loadings}
               />
 
               {loadingMore && (

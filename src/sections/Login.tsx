@@ -3,7 +3,7 @@ import {  useNavigate } from "react-router-dom";
 import { login } from "../redux/apiCalls";
 import { useDispatch } from "react-redux";
 import OAuth from "../components/0Auth";
-
+import img from '../../public/Fs.png'
 const Login = () => {
   const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -29,8 +29,10 @@ const Login = () => {
 
   return (
     <section className="flex min-h-screen items-center justify-center py-10 bg-white px-2">
+
       <div className="bg-white w-full text-black lg:w-4/12 rounded-xl md:mx-0 py-10 px-6 lg:px-16 xl:px-12 flex items-center justify-center">
         <div className="w-full h-100">
+          <img src={img} height={50} width={50}/>
           <h1 className="text-xl md:text-xl font-medium leading-tight mt-5">Login</h1>
           <form className="mt-6" onSubmit={handleClick}>
             <div>

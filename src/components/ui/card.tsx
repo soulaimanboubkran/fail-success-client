@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useId } from "react";
 import { TbHttpDelete } from "react-icons/tb";
 
@@ -13,22 +13,34 @@ interface FeaturesSectionDemoProps {
   grid: Feature[];
   updateFeatureState: (id: string, state: string) => Promise<void>;
   deleteFeature: (id: string) => Promise<void>;
+  loadings:boolean
 }
 
 const FeaturesSectionDemo: React.FC<FeaturesSectionDemoProps> = ({
   grid,
   updateFeatureState,
   deleteFeature,
+  loadings
 }) => {
+  
   const handleDelete = async (id: string) => {
-    try {
+    
+     try {
+     
       await deleteFeature(id);
+    
     } catch (error) {
+      
       console.log(error);
     }
   };
 
   return (
+    <>{loadings &&
+                <div className="flex justify-center items-center ">
+      <span className="loading loading-spinner loading-lg "></span></div>
+   
+  }
     <div className="py-16 dark:bg-slate-950  h-screen">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 md:gap-5 max-w-full px-5 mx-auto">
         {grid.map((feature, index) => (
@@ -81,6 +93,7 @@ const FeaturesSectionDemo: React.FC<FeaturesSectionDemoProps> = ({
                 onClick={() => handleDelete(feature._id)}
                 className="mt-6 ml-3 text-2xl z-[1] shadow-[0_4px_14px_0_rgb(0,0,0,10%)] hover:shadow-[0_6px_20px_rgba(93,93,93,23%)] px-6 py-2 bg-[#fff] text-[#696969] rounded-md font-light transition duration-200 ease-linear"
               >
+                
               <TbHttpDelete/>
               </button>
             </div>
@@ -88,6 +101,7 @@ const FeaturesSectionDemo: React.FC<FeaturesSectionDemoProps> = ({
         ))}
       </div>
     </div>
+    </>
   );
 };
 
