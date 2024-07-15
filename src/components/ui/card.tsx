@@ -29,8 +29,8 @@ const FeaturesSectionDemo: React.FC<FeaturesSectionDemoProps> = ({
   };
 
   return (
-    <div className="py-16 h-screen">
-      <div className="grid dark:bg-slate-950 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 md:gap-5 max-w-full px-5 mx-auto">
+    <div className="py-16 dark:bg-slate-950  h-screen">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 md:gap-5 max-w-full px-5 mx-auto">
         {grid.map((feature, index) => (
           <div
             key={`${feature._id}-${index}`}

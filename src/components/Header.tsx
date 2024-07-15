@@ -75,7 +75,7 @@ const Header = () => {
   console.log(profile)
   return (
     
-    <><div className="bg-white">
+    <><div className="bg-white dark:bg-slate-950">
                 
 
     {isOpen && (

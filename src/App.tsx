@@ -15,6 +15,7 @@ const App: React.FC = () => {
 
   return (
   <>
+  <div className='dark:bg-slate-950 bg-white h-screen'>
 <Header />
       <Routes>
       <Route path="/" element={<Home />} />
@@ -23,7 +24,7 @@ const App: React.FC = () => {
           <Thing /></ProtectedRoute>
           } />
         <Route path="/login" element={<Login />} />
-      </Routes>
+      </Routes></div>
    </>
   );
 };

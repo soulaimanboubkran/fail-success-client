@@ -55,11 +55,7 @@ const Login = () => {
                 required
               />
             </div>
-            <div className="text-right mt-2">
-              <Link to="/forgot-pass" className="text-sm font-semibold text-gray-700 hover:text-blue-700 focus:text-blue-700">
-                Forget password?
-              </Link>
-            </div>
+           
             <button
               type="submit"
               className="w-full block bg-slate-900 hover:scale-105 transition-all focus:bg-slate-700 text-white font-semibold rounded-lg px-4 py-3 mt-6"
@@ -73,12 +69,7 @@ const Login = () => {
             <hr className="my-6 border-gray-300 w-full" />
           </div>
           <OAuth/>
-          <p className="mt-8">
-            Need an account?
-            <Link to="/register" className="text-blue-600 hover:text-blue-700 font-medium">
-              Sign up
-            </Link>
-          </p>
+          
         </div>
       </div>
     </section>
