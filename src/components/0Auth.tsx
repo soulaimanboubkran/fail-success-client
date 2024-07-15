@@ -14,7 +14,7 @@ const OAuth=()=> {
 
       const result = await signInWithPopup(auth, provider);
 
-      const res = await fetch('http://localhost:4000/api/auth/google', {
+      const res = await fetch('https://fail-success-backend.vercel.app/api/auth/google', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
