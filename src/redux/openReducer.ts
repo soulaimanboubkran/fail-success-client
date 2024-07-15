@@ -1,5 +1,5 @@
 // src/store/reducers/openReducer.ts
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 export interface OpenState {
     isOpen: boolean;

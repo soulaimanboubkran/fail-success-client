@@ -17,7 +17,7 @@ const Login = () => {
         setLoading(true);
         
         try {
-            const res = await login(dispatch, { email, password });
+            await login(dispatch, { email, password });
             setLoading(false);
             naviagate('/')
        

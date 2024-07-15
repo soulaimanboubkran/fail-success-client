@@ -15,7 +15,7 @@ interface StringsProps {
 const Strings: React.FC<StringsProps> = ({ showModal2, setShowModal2,setThing,setShowModal }) => {
   const [strings, setStrings] = useState<string[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string>('');
+  const [, setError] = useState<string>('');
 
   const profile = useSelector((state: RootState) => state.user.currentUser);
   const id = profile?._id;
@@ -114,6 +114,11 @@ const Strings: React.FC<StringsProps> = ({ showModal2, setShowModal2,setThing,se
                             {string}
                           </li>
                         ))}
+                        {loading && (
+                <div className="flex items-center justify-center mt-4">
+                  <span className="loading loading-spinner loading-lg "></span>
+                </div>
+              )}
                       </ul>
                     </div>
                   </div>

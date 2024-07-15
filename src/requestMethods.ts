@@ -3,7 +3,7 @@
 import axios from "axios";
 
 
-const BASE_URL = "http://localhost:4000/api/";
+const BASE_URL = "https://fail-success-backend.vercel.app/api/";
 
 // const TOKEN =
 //   JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user).currentUser

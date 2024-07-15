@@ -1,6 +1,6 @@
 
 import { TbLayoutSidebarLeftCollapse, TbLayoutSidebarRightCollapse } from "react-icons/tb"
-import Thing from "../sections/Thing"
+
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { toggleOpen } from "../redux/openReducer";
@@ -10,7 +10,7 @@ import { FiSquare } from "react-icons/fi";
 import { RiHome6Line } from "react-icons/ri";
 import { LuTextSelect } from "react-icons/lu";
 import Strings from "./Strings";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { userRequest } from "../requestMethods";
 import { MdLogout } from "react-icons/md";
 
@@ -20,7 +20,7 @@ const Header = () => {
 
   const [thing, setThing] = useState('');
   const [description, setDescription] = useState('');
-  const [type, setType] = useState('private');
+  const [type, ] = useState('private');
  
   const isOpen = useSelector((state: RootState) => state.open.isOpen);
 
@@ -72,11 +72,25 @@ const Header = () => {
     setShowModal(false);
 
   };
+  console.log(profile)
   return (
     
     <><div className="bg-white">
+                
+
     {isOpen && (
       <>
+      <div className="fixed  bottom-12 left-2 z-50">
+          <Link
+            to="/"
+            type="button"
+            className="px-2 py-1  w-full h-full flex rounded-md border border-black bg-white text-black text-sm hover:shadow-[4px_4px_0px_0px_rgba(0,0,0)] transition duration-200"
+            aria-expanded="false"
+          >
+            <RiHome6Line className="text-2xl"/>
+          </Link>
+        </div>
+        {profile ? (<>
         <div className="fixed bottom-[10.5rem] left-2 z-50">
           <button
             onClick={openModal}
@@ -108,16 +122,7 @@ const Header = () => {
             <FiSquare className="text-2xl"/>
           </Link>
         </div>
-        <div className="fixed  bottom-12 left-2 z-50">
-          <Link
-            to="/"
-            type="button"
-            className="px-2 py-1  w-full h-full flex rounded-md border border-black bg-white text-black text-sm hover:shadow-[4px_4px_0px_0px_rgba(0,0,0)] transition duration-200"
-            aria-expanded="false"
-          >
-            <RiHome6Line className="text-2xl"/>
-          </Link>
-        </div>
+        
         <div className="fixed  bottom-[8rem] left-2 z-50">
           <button
            onClick={openModal2}
@@ -126,23 +131,44 @@ const Header = () => {
             <LuTextSelect className="text-2xl"/>
           </button>
         </div>
-        <div className="fixed bottom-2 right-2 z-50">
-          {profile ? (
+   
+           <div className="fixed bottom-9 right-2 z-50">
+        <div className="drawer-content rounded-2xl">
+                      <label
+                        htmlFor="my-drawer"
+                        className="btn bg-transparent hover:bg-transparent drawer-button border-none"
+                      >
+                        
+                            <img
+                              src={profile.avatar}
+                              width={30}
+                              height={30}
+                              className="rounded-full border"
+                              alt="User Avatar"
+                            />
+                            <div className="block badge-ghost bg-transparent border-none text-black dark:text-white">
+                              {profile.username}
+                            </div>
+                       
+                      </label>
+                    </div></div>
+                     <div className="fixed bottom-2 right-2 z-50">
             <button
               onClick={logout}
               className="px-6 py-1 flex  rounded-md border border-black bg-white text-black text-sm hover:shadow-[4px_4px_0px_0px_rgba(0,0,0)] transition duration-200"
             >
               Logout<MdLogout  className="ml-1 text-xl"/>
-            </button>
+            </button> </div></>
           ) : (
+            <div className="fixed bottom-2 right-2 z-50">
             <Link
               to="/login"
               className="px-2 py-1  text-xl font-bold w-full h-full flex rounded-md border border-black bg-white text-black  hover:shadow-[4px_4px_0px_0px_rgba(0,0,0)] transition duration-200"
               >
               Log in
             </Link>
-          )}
-        </div>
+          </div>
+       )}
       </>
     )}
 
@@ -155,7 +181,7 @@ const Header = () => {
             <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">
               &#8203;
             </span>
-            <div className="inline-block align-bottom bg-white rounded-3xl text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg  sm:w-full">
+            <div className="inline-block align-bottom bg-white rounded-3xl text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg w-full sm:w-full">
               <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                 <div className="sm:flex sm:items-start">
                   <div className="mx-auto  flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-12">
