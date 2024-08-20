@@ -1,4 +1,4 @@
-import  { useEffect, useState, useCallback } from "react";
+import  React, { useEffect, useState, useCallback } from "react";
 import { userRequest } from "../requestMethods";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
@@ -14,8 +14,12 @@ interface Feature {
   state: string;
   loadings:boolean
 }
+interface ThingProps {
+  showModal:boolean;
+}
 
-const Thing = () => {
+
+const Thing: React.FC<ThingProps> = ({showModal }) => {
   const profile = useSelector((state: RootState) => state.user.currentUser);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>('');
@@ -99,6 +103,11 @@ const Thing = () => {
       console.log(error);
     }
   };
+  useEffect(() => {
+    if (!showModal) {
+      fetchUserThings(1, false);
+    }
+  }, [showModal, fetchUserThings]);
 
   return (
     <>

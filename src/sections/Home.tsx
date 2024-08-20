@@ -6,6 +6,7 @@ import i1 from '../assets/i1.svg'
 import i2 from '../assets/things.png'
 import i3 from '../assets/add.png'
 import i4 from '../assets/mobile.png'
+import img from '../../public/Fs.png'
 
 import FeaturesSectionDemo2 from '../components/ui/card2';
 
@@ -45,7 +46,8 @@ const Home = () => {
   <div className="overflow-hidden">
         <div className="fixed top-2 left-2 z-50">
           <Link to="/" type="button" aria-expanded="false" className="text-2xl font-Syne">
-            <span className="font-bold">Fail</span><span className="">Success</span>
+          <img src={img} height={50} width={50}/>
+
           </Link>
         </div>
       </div>

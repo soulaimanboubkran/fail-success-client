@@ -10,12 +10,15 @@ import { FiSquare } from "react-icons/fi";
 import { RiHome6Line } from "react-icons/ri";
 import { LuTextSelect } from "react-icons/lu";
 import Strings from "./Strings";
-import { useState } from "react";
+import React, { useState } from "react";
 import { userRequest } from "../requestMethods";
 import { MdLogout } from "react-icons/md";
+interface HeaderProps {
+  setShowModal: (show: boolean) => void;
+  showModal:boolean;
+}
 
-const Header = () => {
-
+const Header: React.FC<HeaderProps> = ({showModal, setShowModal }) => {
   const profile = useSelector((state: RootState) => state.user.currentUser);
 
   const [thing, setThing] = useState('');
@@ -27,7 +30,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [load, setLoad] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+ 
   const [showModal2, setShowModal2] = useState(false);
   
   
@@ -204,6 +207,7 @@ setLoad(false)
                       Your New things
                     </h3>
                     <div className="mt-2 h-40 w-full ">
+                      
                       <form onSubmit={handleClick}>
                         <label className="form-control w-full ">
                           <div className="label">

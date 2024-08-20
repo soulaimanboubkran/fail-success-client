@@ -1,5 +1,5 @@
 // src/App.tsx
-import React from 'react';
+import React, { useState } from 'react';
 import {  Route, Routes } from 'react-router-dom';
 import './App.css';
 import Thing from './sections/Thing';
@@ -12,16 +12,17 @@ import ProtectedRoute from './ProtectedRoute';
 
 const App: React.FC = () => {
 
+  const [showModal, setShowModal] = useState(false);
 
   return (
   <>
   <div className='dark:bg-slate-950 bg-white h-screen'>
-<Header />
-      <Routes>
+  <Header setShowModal={setShowModal} showModal={showModal} />     
+    <Routes>
       <Route path="/" element={<Home />} />
         <Route path="/thing" element={
             <ProtectedRoute>
-          <Thing /></ProtectedRoute>
+          <Thing  showModal={showModal}/></ProtectedRoute>
           } />
         <Route path="/login" element={<Login />} />
       </Routes></div>
